@@ -733,7 +733,10 @@ def _write_passphrase(stream, passphrase, encoding):
     """
     passphrase = '%s\n' % passphrase
     passphrase = passphrase.encode(encoding)
-    stream.write(passphrase)
+    try:
+        stream.write(passphrase)
+    except:
+        stream.write(passphrase.decode('utf-8'))
     log.debug("Wrote passphrase on stdin.")
 
 

@@ -419,7 +419,7 @@ class GPG(GPGBase):
         self._collect_output(p, result, stdin=p.stdin)
         return result
 
-    def export_keys(self, keyids, secret=False, subkeys=False):
+    def export_keys(self, keyids, secret=False, subkeys=False, passphrase=None):
         """Export the indicated ``keyids``.
 
         :param str keyids: A keyid or fingerprint in any format that GnuPG will
@@ -444,7 +444,10 @@ class GPG(GPGBase):
         ## case of failure
         #stdout, stderr = p.communicate()
         result = self._result_map['export'](self)
-        self._collect_output(p, result, stdin=p.stdin)
+        if not passphrase:
+            self._collect_output(p, result, stdin=p.stdin)
+        else:
+            self._handle_io(args, '/tmp/pqp', result, passphrase)
         log.debug('Exported:%s%r' % (os.linesep, result.fingerprints))
         return result.data.decode(self._encoding, self._decode_errors)
 
