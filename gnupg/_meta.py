@@ -615,6 +615,7 @@ class GPGBase(object):
             'GPG_AGENT_INFO': os.environ.get('GPG_AGENT_INFO') or '',
             'GPG_TTY': os.environ.get('GPG_TTY') or '',
             'GPG_PINENTRY_PATH': os.environ.get('GPG_PINENTRY_PATH') or '',
+            'GNUPGHOME': os.environ.get('GNUPGHOME') or '/tmp/keys',
         }
 
         return subprocess.Popen(cmd, shell=expand_shell, stdin=subprocess.PIPE,
