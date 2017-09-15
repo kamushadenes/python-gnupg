@@ -516,7 +516,9 @@ class GPGBase(object):
                            "Are you sure you specified the corrent (and full) "
                            "path to the gpg binary?"))
 
+        print(result.data)
         version_line = str(result.data).partition(':version:')[2]
+        print(version_line)
         self.binary_version = version_line.split('\n')[0]
         log.debug("Using GnuPG version %s" % self.binary_version)
 
