@@ -613,7 +613,6 @@ def _match_version_string(version):
 
         would return ``(2, 1, 3)``.
     """
-    print('OLAAA', _VERSION_STRING_REGEX, version)
     matched = _VERSION_STRING_REGEX.match(version)
     g = matched.groups()
     major, minor, micro = g[0], g[2], g[4]
